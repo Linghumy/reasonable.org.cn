@@ -46,6 +46,7 @@ export default function Team() {
         {nick: '鸭鸭生的小澄', qq: 443401353},
         {nick: '松易涅', qq: 2564241732},
         {nick: 'DustyCanyon', qq: 1226134493},
+        {nick: 'skdzz', qq: 2366267016},
     ]
     return (
         <Section className="text-center">
