@@ -3,26 +3,21 @@ import clsx from 'clsx';
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 import Section from "@/app/ui/container";
+import * as lib from "@/lib/__init__";
+import * as config from "@/config"
 
-const links = [
-    {name: '了解我们', href: '/'},
-    {name: '团队成员', href: '/team'},
-    {name: '团队项目', href: '/projects'},
-    {name: '加入我们', href: '/join'},
-];
-
-export default function NavLink() {
+export default function Navbar() {
     const pathname = usePathname();
-    const isProvided = links.find((link) => link.href === pathname);
     return (
         <Section className={
             clsx(
-                isProvided && 'w-full z-10' || 'hidden'
+                lib.navbar.is_show_navbar(pathname) && 'w-full z-10' || 'hidden'
             )
         }>
+            {/* 导航项增加到 6 个，适当加宽容器避免文字拥挤 */}
             <div
-                className="text-center md:w-1/2 sm:w-3/4 w-11/12 mx-auto relative flex space-x-1 rounded-xl bg-primary dark:bg-primary-dark p-1">
-                {links.map((link) => {
+                className="text-center md:w-2/3 sm:w-3/4 w-11/12 mx-auto relative flex space-x-1 rounded-xl bg-primary dark:bg-primary-dark p-1">
+                {config.paths.map((link) => {
                     return (
                         <Link
                             key={link.name}

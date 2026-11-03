@@ -12,7 +12,8 @@ export default function Footer() {
                 <div className="my-2">
                     <Link href="/docs/term-of-service">服务协议</Link> · <Link href="/docs/privacy-policy">隐私政策</Link>
                 </div>
-                <span>© 2021-{currentYear} Reasonable. 保留所有权利.</span>
+                {/* 原版权信息：© 2021-{currentYear} Reasonable. 保留所有权利. */}
+                <span>© 2021-{currentYear} 禾李（杭州）科技有限责任公司. 保留所有权利.</span>
             </div>
         </footer>
     )
