@@ -1,12 +1,12 @@
 'use client';
 import Link from "next/link";
 import {motion} from "framer-motion";
-import ReasonableLogo from "@/app/ui/logo";
-import {CornerTicks} from "@/app/ui/deco";
+import MemberCloud from "@/app/ui/home/member-cloud";
+import {teamMembers} from "@/lib/members";
 
 const facts = [
     {label: '成立时间', value: '2021.08'},
-    {label: '团队规模', value: '20+ 成员'},
+    {label: '团队规模', value: `${teamMembers.length} 名成员`},
     {label: '核心领域', value: 'Minecraft 创作与开发'},
 ];
 
@@ -26,7 +26,7 @@ export default function Hero() {
             <div className="pointer-events-none absolute -right-40 -top-24 h-[420px] w-[720px] rotate-[-8deg] bg-panel-2/80" aria-hidden="true"/>
             <div className="pointer-events-none absolute -right-24 top-40 h-24 w-[560px] rotate-[-8deg] hatch text-edge" aria-hidden="true"/>
 
-            <div className="relative mx-auto grid max-w-screen-xl gap-12 px-6 pb-20 pt-24 sm:pt-32 lg:grid-cols-[1.4fr_1fr] lg:items-center lg:pb-28 lg:pt-40">
+            <div className="relative mx-auto grid max-w-screen-xl gap-12 px-6 pb-20 pt-24 sm:pt-32 lg:grid-cols-[1.08fr_1fr] lg:items-center lg:pb-28 lg:pt-40">
                 {/* 左：标题区 */}
                 <div>
                     <motion.div variants={rise} initial="hidden" animate="show" custom={0}
@@ -53,39 +53,18 @@ export default function Hero() {
 
                     <motion.div variants={rise} initial="hidden" animate="show" custom={4}
                                 className="mt-10 flex flex-wrap items-center gap-4">
-                        <Link href="/join"
-                              className="clip-slant bg-signal px-8 py-3.5 text-sm font-black tracking-widest text-ink transition-colors hover:bg-fg">
-                            加入我们
-                        </Link>
                         <Link href="/team"
-                              className="clip-slant border border-edge-strong bg-panel px-8 py-3.5 text-sm font-black tracking-widest text-fg transition-colors hover:border-signal hover:text-signal">
+                              className="clip-slant bg-signal px-8 py-3.5 text-sm font-black tracking-widest text-ink transition-colors hover:bg-fg">
                             认识团队
+                        </Link>
+                        <Link href="/join"
+                              className="clip-slant border border-edge-strong bg-panel px-8 py-3.5 text-sm font-black tracking-widest text-fg transition-colors hover:border-signal hover:text-signal">
+                            加入我们
                         </Link>
                     </motion.div>
                 </div>
 
-                {/* 右：徽标面板 */}
-                <motion.div
-                    initial={{opacity: 0, scale: 0.94}}
-                    animate={{opacity: 1, scale: 1}}
-                    transition={{duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1]}}
-                    className="relative mx-auto hidden w-full max-w-sm lg:block">
-                    <div className="relative border border-edge bg-panel p-10 clip-corner">
-                        <CornerTicks/>
-                        <div className="flex items-center justify-between border-b border-edge pb-4">
-                            <span className="text-[10px] font-bold tracking-[0.3em] text-dim">EST. 2021</span>
-                            <span className="flex gap-1.5">
-                                <span className="h-1.5 w-1.5 bg-signal"/>
-                                <span className="h-1.5 w-1.5 bg-edge-strong"/>
-                                <span className="h-1.5 w-1.5 bg-edge-strong"/>
-                            </span>
-                        </div>
-                        <div className="flex items-center justify-center py-12">
-                            <ReasonableLogo className="h-40 w-40 fill-fg drop-shadow-[0_0_24px_rgba(255,194,51,0.15)]"/>
-                        </div>
-                        <div className="hatch h-3 w-full text-signal/50"/>
-                    </div>
-                </motion.div>
+                <MemberCloud/>
             </div>
 
             {/* 底部事实条 */}
