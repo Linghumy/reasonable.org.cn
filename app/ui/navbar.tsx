@@ -16,9 +16,10 @@ export default function Navbar() {
             <div className="mx-auto flex h-16 max-w-screen-xl items-center justify-between px-4 sm:px-6">
                 {/* 左侧：标识 */}
                 <Link href="/" className="group flex items-center gap-3" onClick={() => setOpen(false)}>
-                    <span className="flex h-9 w-9 items-center justify-center bg-signal clip-corner-sm">
-                        <ReasonableLogo className="h-5 w-5 fill-base"/>
-                    </span>
+                    <ReasonableLogo
+                        aria-hidden="true"
+                        className="h-8 w-8 shrink-0 fill-fg transition-colors group-hover:fill-signal"
+                    />
                     <span className="leading-none">
                         <span className="block text-sm font-black tracking-widest text-fg">禾李团队</span>
                         <span className="mt-1 block text-[10px] font-bold tracking-[0.3em] text-dim">REASONABLE</span>
