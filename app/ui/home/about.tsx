@@ -3,8 +3,8 @@ import {CornerTicks, Reveal, SectionHeader} from "@/app/ui/deco";
 const items = [
     {
         key: '01',
-        title: '从网友到公司',
-        content: '禾李团队（Reasonable）成立于 2021 年 8 月 14 日，由一群在网络上相识的 Minecraft 玩家组成。如今我们正式注册为禾李（杭州）科技有限责任公司，把当年的热爱变成了一份正经事业。',
+        title: '我们是谁',
+        content: '禾李团队（Reasonable）成立于 2021 年 8 月 14 日，由一群在网络上相识的 Minecraft 玩家组成。如今我们正式注册为禾李（杭州）科技有限责任公司。',
     },
     {
         key: '02',
