@@ -13,9 +13,11 @@ import {CornerTicks} from "@/app/ui/deco";
 import {memberAvatarUrl, teamMembers, type TeamMember} from "@/lib/members";
 
 const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+const latitudeRange = 0.82;
 
 const spherePoints = teamMembers.map((_, index) => {
-    const y = 1 - (index / Math.max(teamMembers.length - 1, 1)) * 2;
+    const y = latitudeRange
+        - (index / Math.max(teamMembers.length - 1, 1)) * latitudeRange * 2;
     const radius = Math.sqrt(Math.max(0, 1 - y * y));
     const angle = goldenAngle * index;
 
@@ -36,7 +38,7 @@ function MemberBadge({member}: { member: TeamMember }) {
             aria-label={`查看团队成员：${member.nick}`}
             className="group flex w-full flex-col items-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
         >
-            <span className="relative h-11 w-11 overflow-hidden border border-edge-strong bg-panel-2 shadow-[0_6px_20px_rgba(0,0,0,0.25)] transition-all duration-300 clip-corner-sm group-hover:scale-110 group-hover:rotate-[3deg] group-hover:border-signal group-hover:shadow-[0_0_24px_rgba(255,194,51,0.24)]">
+            <span className="relative h-14 w-14 overflow-hidden border border-edge-strong bg-panel-2 shadow-[0_6px_20px_rgba(0,0,0,0.25)] transition-all duration-300 clip-corner-sm group-hover:scale-110 group-hover:rotate-[3deg] group-hover:border-signal group-hover:shadow-[0_0_24px_rgba(255,194,51,0.24)]">
                 {imageFailed ? (
                     <span className="flex h-full w-full items-center justify-center text-sm font-black text-mute">
                         {member.nick.slice(0, 1)}
@@ -47,7 +49,7 @@ function MemberBadge({member}: { member: TeamMember }) {
                         alt={`${member.nick} 的头像`}
                         width={96}
                         height={96}
-                        sizes="44px"
+                        sizes="56px"
                         unoptimized
                         className="h-full w-full object-cover"
                         onError={() => setImageFailed(true)}
@@ -55,7 +57,7 @@ function MemberBadge({member}: { member: TeamMember }) {
                 )}
                 <span className="absolute bottom-0 right-0 h-1.5 w-1.5 bg-signal"/>
             </span>
-            <span className="mt-1.5 block w-full truncate bg-ink/75 px-1 py-0.5 text-center text-[9px] font-bold leading-4 tracking-wide text-mute transition-colors group-hover:bg-signal group-hover:text-ink">
+            <span className="mt-2 block w-full whitespace-nowrap bg-ink/75 px-1 py-0.5 text-center text-[10px] font-bold leading-4 tracking-wide text-mute transition-colors group-hover:bg-signal group-hover:text-ink">
                 {member.nick}
             </span>
         </Link>
@@ -180,26 +182,20 @@ export default function MemberCloud() {
             initial={{opacity: 0, scale: 0.94}}
             animate={{opacity: 1, scale: 1}}
             transition={{duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1]}}
-            className="relative mx-auto hidden w-full max-w-[520px] lg:block"
+            className="relative mx-auto hidden w-full max-w-[440px] lg:block"
         >
-            <div className="relative border border-edge bg-panel p-5 clip-corner">
+            <div className="relative border border-edge bg-panel p-3 clip-corner">
                 <CornerTicks/>
-                <div className="flex items-center justify-between border-b border-edge pb-4">
-                    <div>
-                        <p className="text-sm font-black tracking-[0.16em] text-fg">团队成员</p>
-                        <p className="mt-1 text-[10px] font-bold tracking-[0.22em] text-dim">
-                            {teamMembers.length} 名成员
-                        </p>
-                    </div>
-                    <span className="h-1.5 w-1.5 animate-pulse bg-signal" aria-hidden="true"/>
-                </div>
 
                 <div
                     ref={sphereRef}
                     onPointerMove={handlePointerMove}
                     onPointerLeave={resetPointer}
-                    className="relative mt-4 h-[460px] touch-pan-y overflow-hidden border border-edge bg-blueprint xl:h-[490px]"
+                    className="relative h-[380px] touch-pan-y overflow-hidden border border-edge bg-blueprint xl:h-[400px]"
                 >
+                    <p className="pointer-events-none absolute left-3 top-3 z-20 text-[9px] font-bold tracking-[0.18em] text-dim">
+                        {teamMembers.length} 名成员
+                    </p>
                     <div className="pointer-events-none absolute inset-0" aria-hidden="true">
                         <span className="absolute left-1/2 top-1/2 h-[44%] w-[44%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-edge"/>
                         <span className="absolute left-1/2 top-1/2 h-[64%] w-[64%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-edge"/>
@@ -222,7 +218,7 @@ export default function MemberCloud() {
                                     hoveredRef.current = null;
                                 }
                             }}
-                            className="absolute left-1/2 top-1/2 w-[92px] will-change-transform hover:z-[1000]"
+                            className="absolute left-1/2 top-1/2 w-[112px] will-change-transform hover:z-[1000]"
                             style={{
                                 opacity: 0,
                                 transform: "translate3d(-50%, -50%, 0) scale(0.7)",
