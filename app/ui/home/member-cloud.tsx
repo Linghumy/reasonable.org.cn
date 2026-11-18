@@ -38,7 +38,7 @@ function MemberBadge({member}: { member: TeamMember }) {
             aria-label={`查看团队成员：${member.nick}`}
             className="group flex w-full flex-col items-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
         >
-            <span className="relative h-14 w-14 overflow-hidden border border-edge-strong bg-panel-2 shadow-[0_6px_20px_rgba(0,0,0,0.25)] transition-all duration-300 clip-corner-sm group-hover:scale-110 group-hover:rotate-[3deg] group-hover:border-signal group-hover:shadow-[0_0_24px_rgba(255,194,51,0.24)]">
+            <span className="relative h-11 w-11 overflow-hidden border border-edge-strong bg-panel-2 shadow-[0_6px_20px_rgba(0,0,0,0.25)] transition-all duration-300 clip-corner-sm group-hover:scale-110 group-hover:rotate-[3deg] group-hover:border-signal group-hover:shadow-[0_0_24px_rgba(255,194,51,0.24)] min-[360px]:h-12 min-[360px]:w-12 sm:h-14 sm:w-14">
                 {imageFailed ? (
                     <span className="flex h-full w-full items-center justify-center text-sm font-black text-mute">
                         {member.nick.slice(0, 1)}
@@ -49,7 +49,7 @@ function MemberBadge({member}: { member: TeamMember }) {
                         alt={`${member.nick} 的头像`}
                         width={96}
                         height={96}
-                        sizes="56px"
+                        sizes="(min-width: 640px) 56px, (min-width: 360px) 48px, 44px"
                         unoptimized
                         className="h-full w-full object-cover"
                         onError={() => setImageFailed(true)}
@@ -128,8 +128,8 @@ export default function MemberCloud() {
             const sinX = Math.sin(tiltX);
             const cosY = Math.cos(tiltY);
             const sinY = Math.sin(tiltY);
-            const radiusX = width * 0.44;
-            const radiusY = height * 0.43;
+            const radiusX = width * (width < 340 ? 0.36 : width < 400 ? 0.4 : 0.44);
+            const radiusY = height * (width < 340 ? 0.37 : width < 400 ? 0.4 : 0.43);
 
             spherePoints.forEach((point, index) => {
                 const node = nodeRefs.current[index];
@@ -182,7 +182,7 @@ export default function MemberCloud() {
             initial={{opacity: 0, scale: 0.94}}
             animate={{opacity: 1, scale: 1}}
             transition={{duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1]}}
-            className="relative mx-auto hidden w-full max-w-[440px] lg:block"
+            className="relative mx-auto block w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[440px]"
         >
             <div className="relative border border-edge bg-panel p-3 clip-corner">
                 <CornerTicks/>
@@ -191,7 +191,7 @@ export default function MemberCloud() {
                     ref={sphereRef}
                     onPointerMove={handlePointerMove}
                     onPointerLeave={resetPointer}
-                    className="relative h-[380px] touch-pan-y overflow-hidden border border-edge bg-blueprint xl:h-[400px]"
+                    className="relative h-[300px] touch-pan-y overflow-hidden border border-edge bg-blueprint sm:h-[340px] lg:h-[380px] xl:h-[400px]"
                 >
                     <p className="pointer-events-none absolute left-3 top-3 z-20 text-[9px] font-bold tracking-[0.18em] text-dim">
                         {teamMembers.length} 名成员
@@ -218,7 +218,7 @@ export default function MemberCloud() {
                                     hoveredRef.current = null;
                                 }
                             }}
-                            className="absolute left-1/2 top-1/2 w-[112px] will-change-transform hover:z-[1000]"
+                            className="absolute left-1/2 top-1/2 w-[88px] will-change-transform hover:z-[1000] min-[360px]:w-[96px] sm:w-[112px]"
                             style={{
                                 opacity: 0,
                                 transform: "translate3d(-50%, -50%, 0) scale(0.7)",

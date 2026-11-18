@@ -7,7 +7,7 @@ import {teamMembers} from "@/lib/members";
 const facts = [
     {label: '成立时间', value: '2021.08'},
     {label: '团队规模', value: `${teamMembers.length} 名成员`},
-    {label: '核心领域', value: 'Minecraft 创作与开发'},
+    {label: '核心领域', value: '软件开发与游戏创作'},
 ];
 
 const rise = {
@@ -26,7 +26,7 @@ export default function Hero() {
             <div className="pointer-events-none absolute -right-40 -top-24 h-[420px] w-[720px] rotate-[-8deg] bg-panel-2/80" aria-hidden="true"/>
             <div className="pointer-events-none absolute -right-24 top-40 h-24 w-[560px] rotate-[-8deg] hatch text-edge" aria-hidden="true"/>
 
-            <div className="relative mx-auto grid max-w-screen-xl gap-12 px-6 pb-20 pt-24 sm:pt-32 lg:grid-cols-[1.08fr_1fr] lg:items-center lg:pb-28 lg:pt-40">
+            <div className="relative mx-auto grid max-w-screen-xl gap-10 px-5 pb-12 pt-16 sm:gap-12 sm:px-6 sm:pb-20 sm:pt-32 lg:grid-cols-[1.08fr_1fr] lg:items-center lg:px-10 lg:pb-28 lg:pt-40 xl:px-12">
                 {/* 左：标题区 */}
                 <div>
                     <motion.div variants={rise} initial="hidden" animate="show" custom={0}
@@ -46,19 +46,19 @@ export default function Hero() {
                     </motion.p>
 
                     <motion.p variants={rise} initial="hidden" animate="show" custom={3}
-                              className="mt-8 max-w-xl text-base leading-8 text-mute sm:text-lg">
+                              className="mt-7 max-w-xl text-[15px] leading-7 text-mute sm:mt-8 sm:text-lg sm:leading-8">
                         一群 Minecraft 玩家组成的团队，成立于 2021 年。
                         从方块世界出发，正在转型为综合性创作与开发团队——我们注定要走向更远的地方。
                     </motion.p>
 
                     <motion.div variants={rise} initial="hidden" animate="show" custom={4}
-                                className="mt-10 flex flex-wrap items-center gap-4">
+                                className="mt-9 grid w-full grid-cols-1 gap-3 min-[360px]:grid-cols-2 sm:mt-10 sm:flex sm:w-auto sm:items-center sm:gap-4">
                         <Link href="/team"
-                              className="clip-slant bg-signal px-8 py-3.5 text-sm font-black tracking-widest text-ink transition-colors hover:bg-fg">
+                              className="clip-slant flex w-full items-center justify-center bg-signal px-6 py-3.5 text-sm font-black tracking-widest text-ink transition-colors hover:bg-fg sm:w-auto sm:px-8">
                             认识团队
                         </Link>
                         <Link href="/join"
-                              className="clip-slant border border-edge-strong bg-panel px-8 py-3.5 text-sm font-black tracking-widest text-fg transition-colors hover:border-signal hover:text-signal">
+                              className="clip-slant flex w-full items-center justify-center border border-edge-strong bg-panel px-6 py-3.5 text-sm font-black tracking-widest text-fg transition-colors hover:border-signal hover:text-signal sm:w-auto sm:px-8">
                             加入我们
                         </Link>
                     </motion.div>
@@ -73,11 +73,11 @@ export default function Hero() {
                 animate={{opacity: 1, y: 0}}
                 transition={{duration: 0.7, delay: 0.5}}
                 className="relative border-t border-edge bg-panel/60 backdrop-blur-sm">
-                <div className="mx-auto grid max-w-screen-xl grid-cols-1 divide-y divide-edge sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+                <div className="mx-auto grid max-w-screen-xl grid-cols-1 divide-y divide-edge sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:px-4 xl:px-6">
                     {facts.map((fact) => (
-                        <div key={fact.label} className="flex items-baseline justify-between gap-4 px-6 py-5 sm:flex-col sm:items-start sm:gap-1">
+                        <div key={fact.label} className="flex items-baseline justify-between gap-4 px-5 py-4 sm:flex-col sm:items-start sm:gap-1 sm:px-6 sm:py-5">
                             <span className="text-xs font-bold tracking-[0.25em] text-dim">{fact.label}</span>
-                            <span className="text-lg font-black text-fg">{fact.value}</span>
+                            <span className="text-right text-base font-black text-fg sm:text-left sm:text-lg">{fact.value}</span>
                         </div>
                     ))}
                 </div>
